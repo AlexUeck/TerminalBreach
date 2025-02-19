@@ -15,6 +15,10 @@ run/main_scene="res://testWorld.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icons/TerminalBreachIcon.png"
 
+[autoload]
+
+AudioController="*res://audio_controller.tscn"
+
 [dotnet]
 
 project/assembly_name="Frontier Lands"

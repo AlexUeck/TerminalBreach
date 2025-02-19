@@ -1,5 +1,6 @@
 extends Node
 
+@onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var main_menu = $CanvasLayer/MainMenu
 #@onready var address_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/AddressEntry
 @onready var hud = $CanvasLayer/HUD
@@ -11,6 +12,8 @@ extends Node
 var tracked = false
 var player
 
+func _ready():
+	AudioController.play_music
 
 func _physics_process(_delta):
 	if tracked:
@@ -22,6 +25,8 @@ func _unhandled_input(_event):
 
 func _on_single_player_button_pressed():
 	main_menu.hide()
+	AudioController.stop_music()
+	AudioController.play_bg
 	hud.show()
 	#multiplayer.multiplayer_peer = enet_peer
 	add_player(multiplayer.get_unique_id())
