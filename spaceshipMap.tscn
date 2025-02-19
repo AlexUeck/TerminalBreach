@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://txw564016hgy"]
+[gd_scene load_steps=45 format=3 uid="uid://txw564016hgy"]
 
 [ext_resource type="PackedScene" uid="uid://5k1o5ctvtah6" path="res://Scenes/enemy.tscn" id="1_yd3bh"]
 
@@ -45,7 +45,7 @@ size = Vector2(40, 4)
 size = Vector2(5, 8)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_mjywr"]
-size = Vector2(4.5, 32.5)
+size = Vector2(6.5, 32.5)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hffmo"]
 size = Vector2(14, 17)
@@ -62,48 +62,129 @@ size = Vector2(20, 21)
 [sub_resource type="PlaneMesh" id="PlaneMesh_1a5tc"]
 size = Vector2(22, 5)
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_woyha"]
+size = Vector2(85, 10)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rlmhc"]
+size = Vector2(20, 15)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ko3tm"]
+size = Vector3(22.5, 8, 3.5)
+
+[sub_resource type="PrismMesh" id="PrismMesh_y1l5v"]
+left_to_right = 1.0
+size = Vector3(5, 11, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8lh2v"]
+size = Vector3(25, 11, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tnvi1"]
+size = Vector3(11, 5.5, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1xyqr"]
+size = Vector3(23, 5, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8fsal"]
+size = Vector3(2, 1, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bvtg5"]
+size = Vector3(4, 0.5, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4u1sl"]
+size = Vector3(4, 0.5, 8)
+
+[sub_resource type="PrismMesh" id="PrismMesh_o2eru"]
+left_to_right = 1.0
+size = Vector3(8, 8, 8)
+
+[sub_resource type="PrismMesh" id="PrismMesh_56ot2"]
+left_to_right = 0.0
+size = Vector3(8, 8, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tn3yg"]
+size = Vector3(82, 8, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0hpjm"]
+size = Vector3(1, 8, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4gnka"]
+size = Vector3(2, 8, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1e8rp"]
+size = Vector3(5, 8, 13)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6pslo"]
+size = Vector3(5, 8, 11.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gxwcy"]
+size = Vector3(1, 8, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o33j8"]
+size = Vector3(17, 8, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n3d1q"]
+size = Vector3(5, 8, 13)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2p1xv"]
+size = Vector3(12, 8, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ol4qh"]
+size = Vector3(18, 8, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_123me"]
+size = Vector3(25, 8, 2.5)
+
 [node name="SpaceshipMap" type="Node3D"]
 
 [node name="Enemy93" parent="." instance=ExtResource("1_yd3bh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.172924, 3, -6.58826)
 
 [node name="Baseplates" type="Node" parent="."]
 
 [node name="Mid" type="MeshInstance3D" parent="Baseplates"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_ev2dd")
 skeleton = NodePath("../..")
 
 [node name="MidBranchASmall" type="MeshInstance3D" parent="Baseplates"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.75, 0, -15.5)
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_y1nvk")
 
 [node name="MidBranchABig" type="MeshInstance3D" parent="Baseplates"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.75, 0, -6)
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_fgk0b")
 
 [node name="SiteA" type="MeshInstance3D" parent="Baseplates"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, -7.5)
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_6yl15")
 
 [node name="DefenderBranchA" type="MeshInstance3D" parent="Baseplates"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -43.5, 0.016, -23.5)
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_1i06n")
 
 [node name="AttackerBranchAMain" type="MeshInstance3D" parent="Baseplates"]
 transform = Transform3D(0.422618, 0, -0.906308, 0, 1, 0, 0.906308, 0, 0.422618, -48, 0, 8)
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_herux")
 
 [node name="AttackerBranchALobby" type="MeshInstance3D" parent="Baseplates"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 0, 21)
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_642bi")
 
 [node name="AttackerSpawnExit" type="MeshInstance3D" parent="Baseplates"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 21.25)
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_rtvs4")
 
 [node name="AttackerSpawn" type="MeshInstance3D" parent="Baseplates"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 40)
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_8u4vn")
 
 [node name="AttackerSpawnExitTunnelLeft" type="MeshInstance3D" parent="Baseplates/AttackerSpawn"]
@@ -120,22 +201,27 @@ mesh = SubResource("PlaneMesh_adcyb")
 
 [node name="MidBranchBSmall" type="MeshInstance3D" parent="Baseplates"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.5, 0, -15.5)
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_4j6ti")
 
 [node name="MidBranchBBig" type="MeshInstance3D" parent="Baseplates"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 2)
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_uljc4")
 
 [node name="AttackerBranchBConnector" type="MeshInstance3D" parent="Baseplates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.75, 0, 2.57028)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.75, 0, 2.5)
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_mjywr")
 
 [node name="AttackerBranchBLobby" type="MeshInstance3D" parent="Baseplates"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0, 10.5)
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_hffmo")
 
 [node name="AttackerBranchBMain" type="MeshInstance3D" parent="Baseplates"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, 21.25)
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_6r3n1")
 
 [node name="AttackerBranchBMain2" type="MeshInstance3D" parent="Baseplates/AttackerBranchBMain"]
@@ -144,8 +230,127 @@ mesh = SubResource("PlaneMesh_wylgc")
 
 [node name="SiteB" type="MeshInstance3D" parent="Baseplates"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 0, -6.99994)
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_3rj2t")
 
 [node name="DefenderBranchB" type="MeshInstance3D" parent="Baseplates"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 49.5, 0, -23.5)
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_1a5tc")
+
+[node name="DefenderSpawnExit" type="MeshInstance3D" parent="Baseplates"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.60271, 0, -30.4977)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_woyha")
+
+[node name="DefenderSpawn" type="MeshInstance3D" parent="Baseplates"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -42)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_rlmhc")
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="MidBranchADivider" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.75, 4, -11.75)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_ko3tm")
+
+[node name="LowerLeftQuarterMid" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -44.8, 4, 8)
+cast_shadow = 0
+mesh = SubResource("PrismMesh_y1l5v")
+
+[node name="BlockSection" type="MeshInstance3D" parent="Walls/LowerLeftQuarterMid"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_8lh2v")
+
+[node name="BlockSection2" type="MeshInstance3D" parent="Walls/LowerLeftQuarterMid"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 8, 0)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_tnvi1")
+
+[node name="BlockSection3" type="MeshInstance3D" parent="Walls/LowerLeftQuarterMid"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -7.5, 0)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_1xyqr")
+
+[node name="MidOverlap" type="MeshInstance3D" parent="Walls/LowerLeftQuarterMid"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.5, -9.5, 0)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_8fsal")
+
+[node name="MidMainDoorLeft" type="MeshInstance3D" parent="Walls/LowerLeftQuarterMid"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 9.85, -11.8, 0)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_bvtg5")
+
+[node name="MidMainDoorRight" type="MeshInstance3D" parent="Walls/LowerLeftQuarterMid"]
+transform = Transform3D(0.642788, -0.766044, 0, 0.766044, 0.642788, 0, 0, 0, 1, 10.75, -16.8, 0)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_4u1sl")
+
+[node name="DefenderBranchAWall1" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -42, 4, -21.5)
+cast_shadow = 0
+mesh = SubResource("PrismMesh_o2eru")
+
+[node name="DefenderBranchBWall1" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 48, 4, -21.5)
+cast_shadow = 0
+mesh = SubResource("PrismMesh_56ot2")
+
+[node name="BackMidWall" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4, -21.5)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_tn3yg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/BackMidWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6.5)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_0hpjm")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Walls/BackMidWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 8.5)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_4gnka")
+
+[node name="LowerRightQuarterMid" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 4, 12.25)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_1e8rp")
+
+[node name="UpperRightQuarterMid" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 4, -7.75)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_6pslo")
+
+[node name="AttackerBranchBBlock" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.5, 4, 21.25)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_gxwcy")
+
+[node name="AttackerBranchBMain" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.5, 4, -3.5)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_o33j8")
+
+[node name="BlockSection" type="MeshInstance3D" parent="Walls/AttackerBranchBMain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 15.75)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_n3d1q")
+
+[node name="AttackerMidWallLeft" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 4, 18.25)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_2p1xv")
+
+[node name="AttackerMidWallRight" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 4, 18.25)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_ol4qh")
+
+[node name="AttackerMidWallBlock" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 10)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_123me")
