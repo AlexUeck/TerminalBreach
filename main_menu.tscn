@@ -1,7 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://b25721k0oqnlb"]
+[gd_scene load_steps=10 format=3 uid="uid://b25721k0oqnlb"]
 
+[ext_resource type="Script" path="res://main_menu.gd" id="1_07mw3"]
 [ext_resource type="FontFile" uid="uid://cikbh0cijo3yi" path="res://Fonts/cyberformhalf.ttf" id="1_ix8f7"]
 [ext_resource type="FontFile" uid="uid://c76krp3u68v8j" path="res://Fonts/Cyberfall Italic.otf" id="2_xlx0f"]
+
+[sub_resource type="Gradient" id="Gradient_ffvd5"]
+offsets = PackedFloat32Array(0, 0.616883, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.623377, 0.623377, 0.623377, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7mp80"]
+gradient = SubResource("Gradient_ffvd5")
 
 [sub_resource type="FontVariation" id="FontVariation_eftnw"]
 base_font = ExtResource("1_ix8f7")
@@ -20,10 +28,14 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -785.0
-offset_bottom = -378.0
+offset_left = 75.0
+offset_top = 272.0
+offset_right = -710.0
+offset_bottom = -106.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.00552, 1.03959)
+script = ExtResource("1_07mw3")
 
 [node name="MainMenu" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -36,6 +48,10 @@ offset_left = -334.0
 offset_top = -193.0
 grow_horizontal = 0
 grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu"]
+layout_mode = 2
+texture = SubResource("GradientTexture1D_7mp80")
 
 [node name="MarginContainer" type="MarginContainer" parent="MainMenu"]
 layout_mode = 2
@@ -70,3 +86,42 @@ text = "Options"
 layout_mode = 2
 theme_override_fonts/font = SubResource("FontVariation_q3ytf")
 text = "Quit"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = 14.5174
+offset_top = -24.5797
+offset_right = 54.5174
+offset_bottom = 15.4203
+
+[node name="ColorRect2" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = -397.21
+offset_top = -208.306
+offset_right = -318.21
+offset_bottom = -149.306
+
+[node name="ColorRect3" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.591
+offset_left = -50.1258
+offset_top = -14.9606
+offset_right = -73.7658
+offset_bottom = 25.0394
+
+[connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/SinglePlayer" to="." method="_on_single_player_pressed"]

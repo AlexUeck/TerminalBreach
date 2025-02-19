@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @onready var nav_agent = $NavigationAgent3D
 @onready var enemy = $enemy
-var SPEED = 7.0
+var SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var bullet_scene = preload("res://Scenes/bullet.tscn")
 @export var shooting_offset: Vector3 = Vector3(0, 1, 3)  # Adjust where bullets should spawn
@@ -19,17 +19,36 @@ func _ready() -> void:
 func update_target_location (target_location):
 	nav_agent.set_target_position(target_location)
 
+#this is code writtin by AI, It moves the enemy but only in the x and z directions. This means they wont constantly look down.
 func _physics_process(_delta):
 	var current_location = global_transform.origin
 	var next_location = nav_agent.get_next_path_position()
-	look_at(next_location) # Enemy will turn to face player
 	
-	# Vector Maths
-	var new_veloicty = (next_location-current_location).normalized() * SPEED
-
-	velocity = new_veloicty
+	# Calculate the direction to look towards (ignoring Y-axis)
+	var direction = (next_location - current_location).normalized()
+	direction.y = 0  # Ignore vertical direction to prevent looking down or up
 	
+	# If there is a direction to look at, update the rotation
+	if direction.length() > 0:
+		look_at(current_location + direction, Vector3.UP)  # Rotate only around Y-axis
+	
+	# Vector Maths for movement
+	var new_velocity = direction * SPEED
+	velocity = new_velocity
 	move_and_slide()
+
+#this is the code used for the enemy before
+#func _physics_process(_delta):
+#	var current_location = global_transform.origin
+#	var next_location = nav_agent.get_next_path_position()
+#	look_at(next_location) # Enemy will turn to face player
+#	
+#	# Vector Maths
+#	var new_veloicty = (next_location-current_location).normalized() * SPEED
+#
+#	velocity = new_veloicty
+#	
+#	move_and_slide()
 
 
 func shoot_bullet():

@@ -7,14 +7,18 @@ signal health_changed(health_value)
 @onready var muzzle_flash = $Camera3D/Pistol/MuzzleFlash
 @onready var raycast = $Camera3D/RayCast3D
 @onready var gunshot = $gunshot
+@export var crouch_height : float = 1.5  # Crouched height
+@export var standing_height : float = 2.5  # Standing height
+
+var is_crouching : bool = false
+
 
 var health = 3
 
 var speed = 5.0
 const JUMP_VELOCITY = 10.0
-var height = 2.0
-var crouch_height = 1.2
-var is_crouching = false
+
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = 20.0
@@ -27,6 +31,8 @@ func _ready():
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	camera.current = true
+	
+	camera.position.y = standing_height / 2.0
 
 func _unhandled_input(event):
 	if not is_multiplayer_authority(): return
@@ -36,8 +42,8 @@ func _unhandled_input(event):
 		camera.rotate_x(-event.relative.y * .005)
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
 	
-	if Input.is_action_just_pressed("shoot") \
-			and anim_player.current_animation != "shoot":
+	if Input.is_action_just_pressed("shoot"):
+		#and anim_player.current_animation != "shoot":
 		play_shoot_effects.rpc()
 		if raycast.is_colliding():
 			var hit_player = raycast.get_collider()
@@ -100,16 +106,17 @@ func _process(delta):
 	# Speeds are subject to change
 	if Input.is_action_pressed("player_run"):
 		speed = 12.0
-	elif Input.is_action_pressed("ui_crouch"):
+	elif Input.is_action_just_pressed("ui_crouch"):
 		print("Crouch")
-		#Commenting out to work on foe next lesson.
-		#camera.position.y = height + 0.05
+		toggle_crouch()
+		if is_crouching:
+			camera.position.y = crouch_height / 2.0
+		else:
+			camera.position.y = standing_height / 2.0
 		speed = 3.5
 	else:
 		speed = 7.0
 
-#func crouch():
-	#is_crouching = true
-	#Reduce the character's height to simulate crouching
-	#camera.position.y = crouch_height - 0.01
-	#print("Crouch")
+
+func toggle_crouch():
+	is_crouching = !is_crouching
