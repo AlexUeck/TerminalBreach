@@ -13,7 +13,10 @@ signal health_changed(health_value)
 @onready var hitmarker = $CanvasLayer/HUD/Hitmarker  # Adjust path to match your scene
 @onready var reticle = $CanvasLayer/HUD/Reticle
 
-
+# Initializes player properties and gameplay mechanics including movement (speed, crouching, jump, gravity),
+# shooting (bullet spawn position, bullet scene preload, cooldown, shooting flag, 
+# ammo count, reload time, reloading status), and health management (max_health, current_health, health) 
+# alongside a readiness indicator.
 var is_crouching : bool = false
 var bullet_spawn
 var bullet_scene = preload("res://Scenes/Player/player_bullet.tscn")
@@ -30,7 +33,8 @@ var gravity = 20.0
 var is_reloading = false 
 const JUMP_VELOCITY = 10.0
 
-
+# Decrease health by damage; if 0 or less, reset health/position, 
+# emit signal, and start reload, otherwise just emit signal.
 func take_damageP(amount) -> void:
 	health -= amount
 #	print("damage taken")
@@ -46,11 +50,11 @@ func take_damageP(amount) -> void:
 		# Emit the health_changed signal with the updated health value
 		health_changed.emit(health)
 	
-
+# Upon entering the scene tree, converts the node's name to an integer and sets it as the multiplayer authority.
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 
-
+# Sets up the player when the scene is ready:
 func _ready():
 	Global.player = self
 	if not is_multiplayer_authority(): return
@@ -61,7 +65,8 @@ func _ready():
 	Global.player = self
 	#print("Player _ready() called!")
 
-	await get_tree().process_frame  # Wait a frame
+# Waits a frame to locate the HUD (and hitmarker within it), then adjusts the camera's vertical position.
+	await get_tree().process_frame 
 	var hud = null
 
 	while hud == null:
@@ -72,17 +77,20 @@ func _ready():
 
 	camera.position.y = standing_height / 1.3
 
+# finds the ammo counter and updates it accordingly.
 	ammo_counter = get_node("Camera3D/AmmoCounter")
 	if ammo_counter:
 		update_ammo_counter()
 	else:
 		is_ready = true
-		print("ammo counte rnot foun")
+		print("ammo counter not found")
 		
 	if is_ready and ammo_counter:
 		update_ammo_counter()	
-	
 
+
+# Updates the ammo counter label to display the current ammo count out of 16.
+# Logs a message if the label isn't available.
 func update_ammo_counter():
 	if ammo_counter:
 		ammo_counter.text = str(ammo) + "/16"
@@ -90,15 +98,16 @@ func update_ammo_counter():
 		print("no label cuh")
 	
 
-
+# Processes player input for mouse look, shooting, and reloading (only if this instance has multiplayer authority).
 func _unhandled_input(event):
 	if not is_multiplayer_authority(): return
 	
+	# Mouse movement: adjust player yaw and camera pitch; clamp camera pitch to avoid over-rotation.
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * .005)
 		camera.rotate_x(-event.relative.y * .005)
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
-	
+	# Shooting: if the shoot action is pressed, shooting is allowed, and there is ammo available.
 	if Input.is_action_just_pressed("shoot") and can_shoot and ammo > 0:
 		shoot()
 		anim_player.stop()
